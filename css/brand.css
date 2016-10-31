@@ -1,0 +1,94 @@
+/*login page*/
+
+
+body > div > div > div > div.panel-body > form > fieldset > a.sample{
+	color: #fff;
+	background-color: #70b345;
+	border: #365621 solid 1px;
+}
+
+.navbar-header .navbar-brand span{
+	color: #70b345;
+}
+
+.text-content.text-center{
+	margin-top: 25px;
+}
+
+.sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active, .sidebar ul.nav .active > a:hover, .sidebar ul.nav li.parent a.active:hover, .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
+	color: #fff;
+	background-color: #70b345;
+}
+
+.widget-right{
+	margin-bottom: 5px; }
+
+	.row.text-center > img {
+		max-width: 100%;
+	}
+
+
+
+	/*profile page*/
+
+	/* Extra Small Devices, Phones */
+	@media only screen and (max-width : 400px) {
+
+
+		body{
+			align-content: center;
+			text-align: center;
+		}
+
+		body > div > div:nth-child(2) > div:nth-child(1) > img{
+			align-content: center;
+			text-align: center;
+			margin: 0;
+		}
+
+		#btn-todo, .btn.btn-primary.btn-lg {
+			align-content: center;
+			text-align: center;
+			margin: 0;
+		}
+
+
+
+	}
+
+	body > div > div:nth-child(2) {
+		position: relative;
+	}
+
+	body > div > div:nth-child(2) > div:nth-child(2) {
+		position: absolute;
+		 top: 50%;
+		 left: 50%;
+	   transform: translateY(-50%);
+	}
+
+	#black {
+	padding: 2% 2% 2% 2%;
+	background-color: #000000;
+	margin-bottom: 2%;
+	}
+
+	#black > div.col-xs-6.white > h3, #black > div.col-xs-6.white > p, #black > div:nth-child(2) > h3, #black > div:nth-child(2) > ul {
+	color: #fff;
+	}
+
+	#black > div:nth-child(1) {
+	border-right: solid white 2px;
+	}
+
+	body > div > div:nth-child(2) > div:nth-child(2) > img {
+	max-width: 30%;
+	}
+
+body > div > div:nth-child(3) {
+margin-top: 10px;
+}
+
+#black > div:nth-child(2) > ul > li > img {
+margin: 1.5% 2% 1.5% ;
+}

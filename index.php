@@ -1,39 +1,12 @@
 <?php
-
-/*MySQL Code*/
-$servername = "localhost";
-$username = "root";
-$password = "test";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
-
-/*E-mail Code
-    error_reporting(-1);
-    ini_set('display_errors', 'On');
-
-    $headers = array("From: from@example.com",
-    "Reply-To: replyto@example.com",
-    "X-Mailer: PHP/" . PHP_VERSION
-    );
-    $headers = implode("\r\n", $headers);
-    $didhappen = mail('mtang.test@gmail.com', 'test', 'test', $headers);
-
-     if($didhappen) {
-        echo 'true';
-     } else {
-        echo 'false';
-     }
-*/
-
-/* Oracle Code
-http://php.net/manual/en/function.oci-connect.php
-resource oci_connect ( string $username , string $password [, string $connection_string [, string $character_set [, int $session_mode ]]] )
-*/
+	include("includes/dbConn_class.php");
+	$user_id = $_POST['email'];
+	$user_pwd = $_POST['password'];
+	$campaign_id = 1;
+	
+	$conn = new dbConn();
+	echo "Username: ". $user_id . "<br>";
+	echo "Password: ". $user_pwd . "<br>";
+	$conn->login($user_id, $user_pwd, $campaign_id);
+	$conn = null;
 ?>
