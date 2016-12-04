@@ -2,7 +2,8 @@
 include('psl-config.php');
 
 class dbConn extends mysqli{
-	protected $conn;
+	//protected $conn;
+	global $conn;
 	
 	function __construct() {		
 		$this->conn = new mysqli(HOST, USER, PASSWORD, MYDATABASE);
