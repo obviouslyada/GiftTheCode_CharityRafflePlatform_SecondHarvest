@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/dbBuild_class.php';
+require('includes/dbBuild_class.php');
 
 $conn = new dbBuild(); //Create New Tables.  dbBuild inherits from dbConn
 

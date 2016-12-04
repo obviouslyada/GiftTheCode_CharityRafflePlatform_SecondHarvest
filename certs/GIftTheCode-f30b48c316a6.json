@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "giftthecode",
+  "private_key_id": "f30b48c316a68d8e19ecc94ddabd4e50eff6df8e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZDWNy5VzRE/Oh\n4RzApGSFOF8fBS0d8THCWOJnB63BNO12WjRowBRTYQTHVJ4VhXB2zMJSx6g98gaW\nGNdPJtua1P64K6xAhgj5A9kMEbs4psFhSWJvD7skGLTVC1u9chDg8BmPreXjDenL\nQ84ctH4N+7Eg78HhGMDdeW/N+xaEHDPw1Q27M7TBsFRN9D7LhWk08aeHn8h+qgBD\ndQiR3uJKCp/1UW8fRfXgJjEryImz0F0j4eKhFKcWDcCwzhaMg2ke302wiLlYDlgE\nJeNEx9rveM7BtOX8Ppo3eRm3Stg7m1ibVIvM9HrTh6sPTSBMz1dRDipXq/xmFuvj\nNxZgQFQtAgMBAAECggEAGc5CGFtH3RDKIV89Y9XUBQpOL4LF6qiCRUyLT+fhihQM\nfcoT0B2iz7QqBBnmVaacIcvAcAit+1PVfHVPyE669E45bIAgmPiAhsv5SqmqsZCc\nRnUDHcq/OQTZaJpzq2uSIPsatDkT68aqxtT16a0dG+p2ISGLxRJRYoZZLZfKYhfE\ngadD4VLtL0tVCw428mCQEnkwnWTU/dQGNBTQKbHBjXL4t9b73BV01DS7kNTJObwV\nJZ7fr3UuJc5OC7kB56sbIMWkUOZBv6QPah1T0j/BOoAxT+V9ymYS4XBB/xDLLNae\n8r726hSouziupQXrra9yZdRxRLT/82M8qyBrWDWYAQKBgQDHe/y9j/DZdsdIaEfm\n6p02dNccLJm+Fdx3KolC3lp1OBtvRLtl1jS2EXbzTIejio32ftsaKwP1E4Z9hXxZ\nBeTWx647GGQOM8TKUDajrTPAApYhsJPTXcDsYD5wvmBOJf+L73egBq2fHq8Iefsx\n6478WG3X5mn9W5P4DwfSE1x1AQKBgQDEadKUFQxPCC0awvxRMU8wsArngIVz2ikj\nh2fxqUd3g4kEm0dputXTq28SvpRM63b4d54s0JVcc/IRT/IdJTM94AAqBvaBBpdT\nRUUP4IT3PdiIddevguzCqAith2CkLfBpb9CmbvIL8ZrT2BNRCTBqC/mJmb+MZlHW\nEs3cK+DDLQKBgExxbObPdAJBjBhpLbSFj31AxPXc+YVoJzXbLQJc5tkoiQrYkd9y\neHyUsLqHRysae1BMSHX8qeWOd+k97+rFYW4U0uV+cUkn+W910ZpjUwNvekyqt9s1\ngCqUrxjRO2J3GThsqbC/HmVtgrGC3QnCNObqlB06BL+8CjXyvJJ6LOIBAoGACs6f\nzZIS6U5T3QMZiwYhi1ZEY1SJA0Tfupq6t2tPCV5tbZl1pnWnSkxGgkuGMW1LUISU\naXbYoQuoKBe0BLKFTURD/gwACD1qmiRXlnYOGuSGQ4voYDnd+R/xykqGoMH+Vm7W\nljHIk6upjzp2ZaERzuP1yQJyrbD7k8HZHeI0LckCgYBWEdRqnMZ6va2uLOPemPu0\nd/1gOq96ifmOBoKjZ4Uay1fXm3qCgdWE+KKaIl33bosgijZr9xI9Pb8xQt6582mk\nVK4r1K1EILQrj/5QKwZ5Ncu2zyw0crt9uYLiEhSarg41YB3M4FzjHkA1WxxUViv5\n3VPeSZ3Zl6mIyKGe2RiXDQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "mydb-917@giftthecode.iam.gserviceaccount.com",
+  "client_id": "118335655072215217963",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mydb-917%40giftthecode.iam.gserviceaccount.com"
+}

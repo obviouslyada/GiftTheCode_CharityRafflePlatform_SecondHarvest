@@ -1,5 +1,5 @@
 <?php
-	include("includes/dbConn_class.php");
+	require('includes/dbConn_class.php');
 	$filename = $_POST['file'];
 	echo "Filename: ". $filename . "<br>";
 	$conn = new dbConn();

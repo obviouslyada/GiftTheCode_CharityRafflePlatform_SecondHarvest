@@ -1,5 +1,5 @@
 <?php
-include_once 'psl-config.php';
+include('psl-config.php');
 
 class dbConn extends mysqli{
 	protected $conn;
@@ -16,212 +16,299 @@ class dbConn extends mysqli{
 		return $this->conn;
 	}
 	
+	/*
 	function execute($sql) {		
-		return $this->conn ->query($sql);
+		if(!$this->conn->query($sql)){
+			printf("Errormesssage: %s\n", $this->conn->error);
+			exit();
+		}
+		else{
+			return $this->conn ->query($sql);
+		}
 	}
-
+	*/
+	
 	function countTicketsDB_All($campaign_id){
-	$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets Where Tickets.Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfOrders'];
+		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets Where Tickets.Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfOrders'];
+		}
 	}
 
 	function countTicketsDB_BySeller($campaign_id, $seller_id){
-	$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets Where Tickets.Seller_ID='$seller_id' AND Tickets.Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfOrders'];
+		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets Where Tickets.Seller_ID='$seller_id' AND Tickets.Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfOrders'];
+		}
 	}
 
 	function countTicketsDB_BySeller_Confirmed($campaign_id, $seller_id){
-	$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets WHERE Tickets.Payment_Status=1 AND Tickets.Seller_ID='$seller_id' AND Tickets.Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfOrders'];
+		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets WHERE Tickets.Payment_Status=1 AND Tickets.Seller_ID='$seller_id' AND Tickets.Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfOrders'];
+		}
 	}
 
 	function countTicketsDB_ByBuyer($campaign_id, $buyer_id){
-	$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets WHERE Tickets.Buyer_ID='$buyer_id' AND Tickets.Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfOrders'];
+		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets WHERE Tickets.Buyer_ID='$buyer_id' AND Tickets.Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfOrders'];
+		}
 	}
 
 	function countTicketsDB_ByBuyer_Confirmed($campaign_id, $buyer_id){
-	$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets WHERE Tickets.Payment_Status=1 AND Tickets.Buyer_ID = '$buyer_id' AND Tickets.Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfOrders'];
+		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets WHERE Tickets.Payment_Status=1 AND Tickets.Buyer_ID = '$buyer_id' AND Tickets.Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfOrders'];
+		}
 	}
 
 	function countSellersDB($campaign_id){
-	$sql = "SELECT COUNT(*) as NumberOfSellers FROM Sellers WHERE Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfSellers'];
+		$sql = "SELECT COUNT(*) as NumberOfSellers FROM Sellers WHERE Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfSellers'];
+		}
 	}
 
 	function countBuyersDB($campaign_id){
-	$sql = "SELECT COUNT(*) as NumberOfBuyers FROM Buyers WHERE Campaign_ID='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfBuyers'];
+		$sql = "SELECT COUNT(*) as NumberOfBuyers FROM Buyers WHERE Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfBuyers'];
+		}
 	}
 
 	function totalValueSold_BySeller($campaign_id, $seller_id){
-	$sql = "SELECT SUM(Price_Per_Ticket) as Totals FROM (Ticket_Type INNER JOIN Tickets ON 
-	Tickets.Price_Tier_ID=Ticket_Type.id AND Tickets.seller_id = '$seller_id' AND Tickets.campaign_id='$campaign_id')";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['Totals'];
+		$sql = "SELECT SUM(Price_Per_Ticket) as Totals FROM (Ticket_Type INNER JOIN Tickets ON 
+				Tickets.Price_Tier_ID=Ticket_Type.id AND Tickets.seller_id = '$seller_id' AND Tickets.campaign_id='$campaign_id')";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['Totals'];
+		}
 	}
 
 	function totalValueSold_ByBuyer($campaign_id, $buyer_id){
-	$sql = "SELECT SUM(Price_Per_Ticket) as Totals FROM (Ticket_Type INNER JOIN Tickets ON 
-	Tickets.Price_Tier_ID=Ticket_Type.id AND Tickets.Buyer_ID = '$buyer_id' AND Tickets.Campaign_ID='$campaign_id')";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['Totals'];
+		$sql = "SELECT SUM(Price_Per_Ticket) as Totals FROM (Ticket_Type INNER JOIN Tickets ON 
+				Tickets.Price_Tier_ID=Ticket_Type.id AND Tickets.Buyer_ID = '$buyer_id' AND Tickets.Campaign_ID='$campaign_id')";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['Totals'];
+		}
 	}
 
 	function totalValueSoldDB_All($campaign_id){
-	$sql = "SELECT SUM(Price_Per_Ticket) as Totals FROM (Ticket_Type INNER JOIN Tickets ON
-	Tickets.Price_Tier_ID=Ticket_Type.id AND Tickets.Campaign_ID = '$campaign_id')";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['Totals'];
+		$sql = "SELECT SUM(Price_Per_Ticket) as Totals FROM (Ticket_Type INNER JOIN Tickets ON
+				Tickets.Price_Tier_ID=Ticket_Type.id AND Tickets.Campaign_ID = '$campaign_id')";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			$row = $result->fetch_assoc();
+			return $row['Totals'];
+		}
 	}
 
 	function countCampaignsDB($campaign_id){
-	$sql = "SELECT COUNT(*) as NumberOfCampaigns FROM Campaigns WHERE Campaigns.id='$campaign_id'";
-	$result = $this->conn->query($sql);
-	$row = $result->fetch_assoc();
-	return $row['NumberOfCampaigns'];
+		$sql = "SELECT COUNT(*) as NumberOfCampaigns FROM Campaigns WHERE Campaigns.id='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}	
+		else{
+			$row = $result->fetch_assoc();
+			return $row['NumberOfCampaigns'];
+		}
 	}
 
 	function login($user_id, $user_pwd, $campaign_id){
-	$sql = "SELECT * FROM Admin where '$user_id'=Admin.Login AND '$user_pwd'=Admin.Password AND '$campaign_id'=Admin.Campaign_ID";
-	$result = $this->conn ->query($sql);
-		if ($result->num_rows > 0) {
-		echo "Validated As Admin";
-		header('Location: secondharvestdash.html');
-		exit();
-
-		} else{
-		$sql = "SELECT * FROM Sellers where '$user_id'=Sellers.Email AND '$user_pwd'=Sellers.uid AND '$campaign_id'=Sellers.Campaign_ID";
-		$result = $this->conn ->query($sql);
+		$sql = "SELECT * FROM Admin where '$user_id'=Admin.Login AND '$user_pwd'=Admin.Password AND '$campaign_id'=Admin.Campaign_ID";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
 			if ($result->num_rows > 0) {
-			echo "Validated As Seller";
-			header('Location: Championdash.html');
-			exit();
+				echo "Validated As Admin";
+				header('Location: secondharvestdash.html');
+				exit();
 			} else{
-			echo "Not Validated<br>";
+				$sql = "SELECT * FROM Sellers where '$user_id'=Sellers.Email AND '$user_pwd'=Sellers.uid AND '$campaign_id'=Sellers.Campaign_ID";
+				$result1 = $this->conn->query($sql);
+				if(!$result1){
+					die("Error Message: " . $result1->error);
+				}
+				else{
+					if ($result1->num_rows > 0) {
+						echo "Validated As Seller";
+						header('Location: Championdash.html');
+						exit();
+					} else{
+						echo "Not Validated<br>";
+					}
+				}
 			}
 		}
 	}
 
 	function displaySellerTable($campaign_id){
-	echo "<table><thead>";
-	$this->displaySellerTableHeaders();
-	$sql = "SELECT * FROM Sellers WHERE Sellers.Campaign_ID='$campaign_id'";
-	$result = $this->execute($sql);
-		if ($result->num_rows > 0) {
-			while($row = $result->fetch_assoc()) {
-				$Seller_Tickets = $this->countTicketsDB_BySeller($campaign_id, $row['id']);
-				$Seller_Confirmed_Tickets = $this->countTicketsDB_BySeller_Confirmed($campaign_id, $row['id']);
-				$Seller_Value_Sold = $this->totalValueSold_BySeller($campaign_id, $row['id']);
+		echo "<table><thead>";
+		$this->displaySellerTableHeaders();
+		$sql = "SELECT * FROM Sellers WHERE Sellers.Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+					$Seller_Tickets = $this->countTicketsDB_BySeller($campaign_id, $row['id']);
+					$Seller_Confirmed_Tickets = $this->countTicketsDB_BySeller_Confirmed($campaign_id, $row['id']);
+					$Seller_Value_Sold = $this->totalValueSold_BySeller($campaign_id, $row['id']);
 
-				echo "<tr>";
-				echo "<th>" . $row['id'] . "</th>";
-				echo "<th>" . $row['Campaign_ID'] . "</th>";
-				echo "<th>" . $row['FirstName'] . "</th>";
-				echo "<th>" . $row['LastName'] . "</th>";
-				echo "<th>" . $row['Email'] . "</th>";
-				echo "<th>" . $Seller_Tickets . "</th>";
-				echo "<th>" . $Seller_Confirmed_Tickets . "</th>";
-				echo "<th>" . $Seller_Value_Sold . "</th>";
-				echo "<th>" . $row['Address1'] . "</th>";
-				echo "<th>" . $row['Address2'] . "</th>";
-				echo "<th>" . $row['City'] . "</th>";
-				echo "<th>" . $row['Province'] . "</th>";
-				echo "<th>" . $row['Postal_Code'] . "</th>";
-				echo "<th>" . $row['Phone'] . "</th>";
-				echo "<th>" . $row['Email_Contact'] . "</th>";
-				echo "<th>" . $row['Post_Contact'] . "</th>";
-				echo "</tr>";
-			}				
-			echo "</thead></table>";
-		  }
-		else {
-		  echo "0 results";
+					echo "<tr>";
+					echo "<th>" . $row['id'] . "</th>";
+					echo "<th>" . $row['Campaign_ID'] . "</th>";
+					echo "<th>" . $row['FirstName'] . "</th>";
+					echo "<th>" . $row['LastName'] . "</th>";
+					echo "<th>" . $row['Email'] . "</th>";
+					echo "<th>" . $Seller_Tickets . "</th>";
+					echo "<th>" . $Seller_Confirmed_Tickets . "</th>";
+					echo "<th>" . $Seller_Value_Sold . "</th>";
+					echo "<th>" . $row['Address1'] . "</th>";
+					echo "<th>" . $row['Address2'] . "</th>";
+					echo "<th>" . $row['City'] . "</th>";
+					echo "<th>" . $row['Province'] . "</th>";
+					echo "<th>" . $row['Postal_Code'] . "</th>";
+					echo "<th>" . $row['Phone'] . "</th>";
+					echo "<th>" . $row['Email_Contact'] . "</th>";
+					echo "<th>" . $row['Post_Contact'] . "</th>";
+					echo "</tr>";
+				}				
+				echo "</thead></table>";
+			  }
+			else {
+				echo "0 results";
+			}
 		}
 	}
 
 	function displayBuyerTable($campaign_id){
-	echo "<table><thead>";
-	$this->displayBuyerTableHeaders();
-	$sql = "SELECT * FROM Buyers WHERE Campaign_ID='$campaign_id'";
-	$result = $this->execute($sql);
-		if ($result->num_rows > 0) {
-			while($row = $result->fetch_assoc()) {
-				$Buyer_Tickets = $this->countTicketsDB_ByBuyer($campaign_id, $row['id']);
-				$Buyer_Confirmed = $this->countTicketsDB_ByBuyer_Confirmed($campaign_id, $row['id']);
-				$Buyer_Total_Value = $this->totalValueSold_ByBuyer($campaign_id, $row['id']);
+		echo "<table><thead>";
+		$this->displayBuyerTableHeaders();
+		$sql = "SELECT * FROM Buyers WHERE Campaign_ID='$campaign_id'";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+					$Buyer_Tickets = $this->countTicketsDB_ByBuyer($campaign_id, $row['id']);
+					$Buyer_Confirmed = $this->countTicketsDB_ByBuyer_Confirmed($campaign_id, $row['id']);
+					$Buyer_Total_Value = $this->totalValueSold_ByBuyer($campaign_id, $row['id']);
 
-				echo "<tr>";
-				echo "<th>" . $row['id'] . "</th>";
-				echo "<th>" . $row['Campaign_ID'] . "</th>";
-				echo "<th>" . $row['FirstName'] . "</th>";
-				echo "<th>" . $row['LastName'] . "</th>";
-				echo "<th>" . $row['Email'] . "</th>";
-				echo "<th>" . $Buyer_Tickets . "</th>";
-				echo "<th>" . $Buyer_Confirmed . "</th>";
-				echo "<th>" . $Buyer_Total_Value . "</th>";
-				echo "<th>" . $row['Address1'] . "</th>";
-				echo "<th>" . $row['Address2'] . "</th>";
-				echo "<th>" . $row['City'] . "</th>";
-				echo "<th>" . $row['Province'] . "</th>";
-				echo "<th>" . $row['Postal_Code'] . "</th>";
-				echo "<th>" . $row['Phone'] . "</th>";
-				echo "<th>" . $row['Email_Contact'] . "</th>";
-				echo "<th>" . $row['Post_Contact'] . "</th>";
-				echo "</tr>";
-			}				
-			echo "</thead></table>";
-		  }
-		else {
-		  echo "0 results";
+					echo "<tr>";
+					echo "<th>" . $row['id'] . "</th>";
+					echo "<th>" . $row['Campaign_ID'] . "</th>";
+					echo "<th>" . $row['FirstName'] . "</th>";
+					echo "<th>" . $row['LastName'] . "</th>";
+					echo "<th>" . $row['Email'] . "</th>";
+					echo "<th>" . $Buyer_Tickets . "</th>";
+					echo "<th>" . $Buyer_Confirmed . "</th>";
+					echo "<th>" . $Buyer_Total_Value . "</th>";
+					echo "<th>" . $row['Address1'] . "</th>";
+					echo "<th>" . $row['Address2'] . "</th>";
+					echo "<th>" . $row['City'] . "</th>";
+					echo "<th>" . $row['Province'] . "</th>";
+					echo "<th>" . $row['Postal_Code'] . "</th>";
+					echo "<th>" . $row['Phone'] . "</th>";
+					echo "<th>" . $row['Email_Contact'] . "</th>";
+					echo "<th>" . $row['Post_Contact'] . "</th>";
+					echo "</tr>";
+				}				
+				echo "</thead></table>";
+			  }
+			else {
+				echo "0 results";
+			}
 		}
 	}
 
 	function displayCampaignTable(){
-	echo "<table><thead>";
-	$this->displayCampaignTableHeaders();
-	$sql = "SELECT * FROM Campaigns";
-	$result = $this->execute($sql);
-		if ($result->num_rows > 0) {
-			while($row = $result->fetch_assoc()) {
-			$sellers_counts=$this->countSellersDB($row['id']);
-			$buyers_counts=$this->countBuyersDB($row['id']);
-			$total_value=$this->totalValueSoldDB_All($row['id']);
+		echo "<table><thead>";
+		$this->displayCampaignTableHeaders();
+		$sql = "SELECT * FROM Campaigns";
+		$result = $this->conn->query($sql);
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+				$sellers_counts=$this->countSellersDB($row['id']);
+				$buyers_counts=$this->countBuyersDB($row['id']);
+				$total_value=$this->totalValueSoldDB_All($row['id']);
 			
-				echo "<tr>";
-				echo "<th>" . $row['id'] . "</th>";
-				echo "<th>" . $row['Campaign_Name'] . "</th>";
-				echo "<th>" . $row['Start_Date'] . "</th>";
-				echo "<th>" . $row['End_Date'] . "</th>";
-				echo "<th>" . $sellers_counts . "</th>";
-				echo "<th>" . $buyers_counts . "</th>";
-				echo "<th>" . $row['Campaign_Goal'] . "</th>";
-				echo "<th>" . $row['Max_Tickets'] . "</th>";
-				echo "<th>" . $total_value . "</th>";
-				echo "</tr>";
+					echo "<tr>";
+					echo "<th>" . $row['id'] . "</th>";
+					echo "<th>" . $row['Campaign_Name'] . "</th>";
+					echo "<th>" . $row['Start_Date'] . "</th>";
+					echo "<th>" . $row['End_Date'] . "</th>";
+					echo "<th>" . $sellers_counts . "</th>";
+					echo "<th>" . $buyers_counts . "</th>";
+					echo "<th>" . $row['Campaign_Goal'] . "</th>";
+					echo "<th>" . $row['Max_Tickets'] . "</th>";
+					echo "<th>" . $total_value . "</th>";
+					echo "</tr>";
+				}
+				echo "</thead></table>";
+			  }
+			else {
+				echo "0 results";
 			}
-			echo "</thead></table>";
-		  }
-		else {
-		  echo "0 results";
 		}
 	}
 
@@ -287,15 +374,16 @@ class dbConn extends mysqli{
 					Postal_Code, Country, Phone, Email, Email_Contact, Post_Contact, uid, Campaign_ID)
 					VALUES ('$line[1]', '$line[2]', '$line[3]', '$line[4]', '$line[5]', '$line[6]',
 					'$line[7]', '$line[8]', '$line[9]', '$line[11]', '$line[12]', '$line[13]', '$line[16]', '$line[52]')";
-				if ($this->execute($sql) === TRUE) {
-				  echo "";
+//				if ($this->execute($sql) === TRUE) {
+				if ($this->conn->query($sql) === TRUE) {
+					echo "";
 				} else {
-				  echo "";
+					echo "";
 				}
 			}
 			fclose($file);
 		}		
-	ini_set('auto_detect_line_endings',FALSE);
+		ini_set('auto_detect_line_endings',FALSE);
 	}
 
 	function exportDB(){
@@ -313,11 +401,16 @@ class dbConn extends mysqli{
 		   ENCLOSED BY '\"'
 		   LINES TERMINATED BY '\r\n'";
 	$result = $this->conn->query($sql);
-	echo "Outputted Buyers <br>";
+		if(!$result){
+			die("Error Message: " . $result->error);
+		}
+		else{
+			echo "Outputted Buyers <br>";
+		}
 	}
 
 	function __destruct() {		
-		$this->conn ->close();
+		$this->conn->close();
 		//echo "Connection Closed! <br>";
 	}
 }		

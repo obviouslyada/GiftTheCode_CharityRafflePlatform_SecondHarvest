@@ -83,22 +83,25 @@
 					<div class="panel-heading">Add buyers</div>
 					<div class="panel-body">
 						<div class="col-lg-12">
-							<form role="form" method="post" action="upload.php">
+							<form role="form" method="post" action="email.php">
 								<div class="form-group">
 									<label>Add emails</label>
 									<p>Enter emails of buyers you want to add.</p>
-									<input type="email" class="form-control">
+									<input type="email" name='email'>
 									<p class="help-block">Separate multiple emails with a coma: jon@gmail.com, jane@hotmail.com, james@yahoo.com</p>
+									 <button type="submit" name="email_submit" class="btn btn-primary btn-md" id="btn-todo" method="post" action="email.php">E-mail</button>
 								</div>
+							</form>
 
+							<form role="form" method="post" action="upload.php">
 								<div class="form-group">
 									<label>Upload a list</label>
-									<input type="file" name="file">
+									<input type="file" name='file'>
 									 <p class="help-block">Upload a .csv file with email addresses only (no other information).</p>
-									 <button type="submit" name="submit" class="btn btn-primary btn-md" id="btn-todo" method="post">Upload</button>
+									 <button type="submit" name="submit" class="btn btn-primary btn-md" id="btn-todo" method="post" action="upload.php">Upload</button>
 								</div>
-
-	</div><!--/.main-->
+							</form>
+						</div><!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

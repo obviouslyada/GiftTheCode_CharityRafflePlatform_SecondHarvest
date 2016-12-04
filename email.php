@@ -1,17 +1,21 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 'On');
+	$email = $_POST['email'];
+	echo "E-mails: " . $email;	
+	
+	error_reporting(-1);
+	ini_set('display_errors', 'On');
 
-$headers = array("From: from@example.com",
-"Reply-To: replyto@example.com",
-"X-Mailer: PHP/" . PHP_VERSION
-);
-$headers = implode("\r\n", $headers);
-$didhappen = mail('mytang.sdk@gmail.com', 'test', 'test', $headers);
+	$headers = array("From: from@secondharvest.com",
+	"Reply-To: replyto@secondharvest.com",
+	"X-Mailer: PHP/" . PHP_VERSION
+	);
+	$headers = implode("\r\n", $headers);
+	$didhappen = mail($email, 'Second Harvest Test', 'Second Harvest Test', $headers);
+	echo "<br>";
 
-if($didhappen) {
-  echo 'true';
-} else {
-  echo 'false';
-}
+	if($didhappen) {
+	  echo 'E-mail Sent';
+	} else {
+	  echo 'E-mail Not Sent';
+	}
 ?>
