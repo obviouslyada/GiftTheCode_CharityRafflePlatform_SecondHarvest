@@ -27,7 +27,7 @@ class dbConn extends mysqli{
 		}
 	}
 	*/
-	
+/*	
 	function countTicketsDB_All($campaign_id){
 		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets Where Tickets.Campaign_ID='$campaign_id'";
 		$result = $this->conn->query($sql);
@@ -408,7 +408,7 @@ class dbConn extends mysqli{
 			echo "Outputted Buyers <br>";
 		}
 	}
-
+*/
 	function __destruct() {		
 		$this->conn->close();
 		//echo "Connection Closed! <br>";
