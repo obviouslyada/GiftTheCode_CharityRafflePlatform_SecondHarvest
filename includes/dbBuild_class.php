@@ -8,7 +8,7 @@ class dbBuild extends dbConn {
 
 	function buildDatabase(){
 		//Check if the Database Exists
-		$sql = "CREATE DATABASE IF NOT EXISTS myDB";
+		$sql = "CREATE DATABASE IF NOT EXISTS mydb";
 		if ($this->conn ->query($sql) === TRUE) {
 		  echo "Database created successfully! <br>";
 		  $this->conn = new mysqli(HOST, USER, PASSWORD, MYDATABASE);

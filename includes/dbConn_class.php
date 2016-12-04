@@ -14,9 +14,8 @@ class dbConn extends mysqli{
 	
 	function getConn(){
 		return $this->conn;
-	}
+	}	
 	
-	/*
 	function execute($sql) {		
 		if(!$this->conn->query($sql)){
 			printf("Errormesssage: %s\n", $this->conn->error);
@@ -26,8 +25,7 @@ class dbConn extends mysqli{
 			return $this->conn ->query($sql);
 		}
 	}
-	*/
-/*	
+	
 	function countTicketsDB_All($campaign_id){
 		$sql = "SELECT COUNT(*) as NumberOfOrders FROM Tickets Where Tickets.Campaign_ID='$campaign_id'";
 		$result = $this->conn->query($sql);
@@ -171,8 +169,8 @@ class dbConn extends mysqli{
 		}
 		else{
 			if ($result->num_rows > 0) {
-				echo "Validated As Admin";
-				header('Location: http:/Secondharvestdash.html');
+				header('Location: Secondharvestdash.html');
+				//echo "Validated As Admin";
 				exit();
 			} else{
 				$sql = "SELECT * FROM Sellers where '$user_id'=Sellers.Email AND '$user_pwd'=Sellers.uid AND '$campaign_id'=Sellers.Campaign_ID";
@@ -182,11 +180,11 @@ class dbConn extends mysqli{
 				}
 				else{
 					if ($result1->num_rows > 0) {
-						echo "Validated As Seller";
-						header('Location: http:/Championdash.html');
+						header('Location: Championdash.html');
+						//echo "Validated As Seller";
 						exit();
 					} else{
-						echo "Not Validated<br>";
+						//echo "Not Validated<br>";
 					}
 				}
 			}
@@ -408,7 +406,7 @@ class dbConn extends mysqli{
 			echo "Outputted Buyers <br>";
 		}
 	}
-*/
+	
 	function __destruct() {		
 		$this->conn->close();
 		//echo "Connection Closed! <br>";
