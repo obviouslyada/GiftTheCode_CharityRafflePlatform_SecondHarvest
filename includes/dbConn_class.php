@@ -172,7 +172,7 @@ class dbConn extends mysqli{
 		else{
 			if ($result->num_rows > 0) {
 				echo "Validated As Admin";
-				header('Location: secondharvestdash.html');
+				header('Location: Secondharvestdash.html');
 				exit();
 			} else{
 				$sql = "SELECT * FROM Sellers where '$user_id'=Sellers.Email AND '$user_pwd'=Sellers.uid AND '$campaign_id'=Sellers.Campaign_ID";

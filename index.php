@@ -5,8 +5,6 @@
 	$campaign_id = 1;
 	
 	$conn = new dbConn();
-	echo "Username: ". $user_id . "<br>";
-	echo "Password: ". $user_pwd . "<br>";
 	$conn->login($user_id, $user_pwd, $campaign_id);
 	$conn = null;
 ?>
