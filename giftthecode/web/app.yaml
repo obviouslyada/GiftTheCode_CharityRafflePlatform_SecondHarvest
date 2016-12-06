@@ -1,0 +1,14 @@
+runtime: php55
+api_version: 1
+env: flex
+
+runtime_config:
+  document_root: web
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /(.*\.(gif|png|jpg))$
+  static_files: static/\1
+  upload: static/.*\.(gif|png|jpg)$
